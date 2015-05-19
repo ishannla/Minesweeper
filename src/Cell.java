@@ -18,12 +18,20 @@ public class Cell {
         return this.value;
     }
 
-    public void uncover() {
-        this.cover = false;
-    }
-
     public void setMark(boolean mark) {
         this.mark = mark;
+    }
+    
+    public void setMine(boolean b) {
+        this.mine = b;
+    }
+    
+    public void setAroundMines(int count) {
+        this.value = count;
+    }
+
+    public void uncover() {
+        this.cover = false;
     }
 
     public boolean isEmpty() {
@@ -32,10 +40,6 @@ public class Cell {
 
     public boolean isMine() {
         return this.mine;
-    }
-
-    public void setMine(boolean b) {
-        this.mine = b;
     }
 
     public boolean isMarked() {
@@ -62,10 +66,7 @@ public class Cell {
         this.checked = false;
     }
 
-    public void setAroundMines(int count) {
-        this.value = count;
-    }
-
+  
     public int getAroundMines() {
         return this.value;
     }

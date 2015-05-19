@@ -7,9 +7,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-//Test to see if push works
-//Greg edit #swag
-//Gregory is #fat
 
 public class Board extends JPanel {
     // Constants
@@ -36,8 +33,8 @@ public class Board extends JPanel {
 
     public Board(JLabel statusBar) {
         this.statusBar = statusBar;
-
         this.img = new Image[NUM_IMAGES];
+        
         for (int i = 0; i < NUM_IMAGES; i++) {
             String path = "img/j" + i + ".gif";
             img[i] = new ImageIcon(path).getImage();
@@ -47,17 +44,7 @@ public class Board extends JPanel {
         this.addMouseListener(new MinesAdapter());
         this.newGame();
     }
-
-    private void initCells () {
-        this.cells = new Cell[rows][columns];
-
-        for (int i = 0; i < this.rows; ++i) {
-            for (int j = 0; j < this.columns; ++j) {
-                this.cells[i][j] = new Cell();
-            }
-        }
-    }
-
+    
     public void newGame () {
         Random random;
 
@@ -83,6 +70,18 @@ public class Board extends JPanel {
 
         this.setMineCounts();
     }
+
+    private void initCells () {
+        this.cells = new Cell[rows][columns];
+
+        for (int i = 0; i < this.rows; ++i) {
+            for (int j = 0; j < this.columns; ++j) {
+                this.cells[i][j] = new Cell();
+            }
+        }
+    }
+
+    
 
     private void setMineCounts() {
 
@@ -111,6 +110,17 @@ public class Board extends JPanel {
         int count = 0;
         
         /* YOUR CODE GOES HERE! */ 
+        
+//        Gameplan:
+//           - Need to initialize a counter variable
+//           - Check all 8 of the cells around the current cell 
+//           - If a cell has a mine in it, add 1 to the counter
+//             (Check the Mines class to see the relevant methods)
+//           - Need to account for corner cells because each corner cell will
+//              only has 3 cells surrounding it instead of 9
+//           - Need to account for border cells because each border cell will
+//              only has 5 cells surrounding it instead of 9
+//            - Return the count
 
         return count;
     }
@@ -165,6 +175,23 @@ public class Board extends JPanel {
 
         /* YOUR CODE GOES HERE! */
         
+//    	Gameplan: 
+//		- There are 13 Images (0 = Pressed, 1 - 8 = Values, 9 = Mine, 10 = Covered, 11 = Marked Correctly, 12 = Marked Incorrectly )
+//      - Need to have separate if statements based on whether InGame is true or false
+//      - If InGame is true
+//        			- If the cell is covered, display covered image
+//        			- If the cell is uncovered and has a value of 0, display pressed image
+//        			- If the cell is uncovered and has a vale, display the correct value
+//        			- If the cell is uncovered and has a mine, display the mine
+//        			- If the cell is marked correctly, display the marked correctly image
+//        			- If the cell is marked incorrectly, display the marked incorrectly image
+//       			 (Reference the methods in the Cell class)
+//      - If InGame is false 
+//        			- Display all of the mines 
+//        			- If the cell has a mine, display it no matter what 
+
+// 		lol tbh I don't understand this method 100% I will ask them more on Monday
+        
         return imageType;
     }
 
@@ -214,6 +241,12 @@ public class Board extends JPanel {
     private void uncoverAroundCell(int x, int y) {
     	
     	/* YOUR CODE GOES HERE! */
+    	
+//    	Gameplan:
+//    		- Method initially checks the value of the 8 cells around the current cell 
+//    				- If the cell has a value of 0, uncover the cell and recursively call uncoverAroundCell on that cell
+//    				- If the cell has a value greater than 0, uncover the cell 
+//					- If the cell has a mine, keep it covered
     	
     }
 
