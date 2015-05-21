@@ -241,7 +241,8 @@ public class Board extends JPanel {
     private void uncoverAroundCell(int x, int y) {
     	
     	/* YOUR CODE GOES HERE! */
-    	
+    	ArrayList<Cell> cellList = new ArrayList<Cell>();
+    	cellList.add()
 //    	Gameplan:
 //    		- Method initially checks the value of the 8 cells around the current cell 
 //    				- If the cell has a value of 0, uncover the cell and recursively call uncoverAroundCell on that cell
