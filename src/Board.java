@@ -6,7 +6,7 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+import java.util.*;
 
 public class Board extends JPanel {
     // Constants
@@ -242,7 +242,19 @@ public class Board extends JPanel {
     	
     	/* YOUR CODE GOES HERE! */
     	ArrayList<Cell> cellList = new ArrayList<Cell>();
-    	cellList.add()
+    	cellList.add(cells[x-1][y]);
+    	cellList.add(cells[x-1][y-1]);
+    	cellList.add(cells[x-1][y+1]);
+    	cellList.add(cells[x][y+1]);
+    	cellList.add(cells[x][y-1]);
+    	cellList.add(cells[x+1][y]);
+    	cellList.add(cells[x+1][y+1]);
+    	cellList.add(cells[x+1][y-1]);
+    	for (Cell c : cellList) {
+    		if (c.getValue == 0) {
+    			
+    		}
+    	}
 //    	Gameplan:
 //    		- Method initially checks the value of the 8 cells around the current cell 
 //    				- If the cell has a value of 0, uncover the cell and recursively call uncoverAroundCell on that cell
