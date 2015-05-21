@@ -252,7 +252,8 @@ public class Board extends JPanel {
     	cellList.add(cells[x+1][y-1]);
     	for (Cell c : cellList) {
     		if (c.getValue == 0) {
-    			
+    			c.uncover();
+    			uncoverAroundCell(c.getX, c.getY);
     		}
     	}
 //    	Gameplan:
