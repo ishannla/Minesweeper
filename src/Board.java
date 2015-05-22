@@ -242,6 +242,7 @@ public class Board extends JPanel {
     	
     	/* YOUR CODE GOES HERE! */
     	ArrayList<Cell> cellList = new ArrayList<Cell>();
+    	cellList.add(cells[x][y]);
     	cellList.add(cells[x-1][y]);
     	cellList.add(cells[x-1][y-1]);
     	cellList.add(cells[x-1][y+1]);
@@ -250,10 +251,16 @@ public class Board extends JPanel {
     	cellList.add(cells[x+1][y]);
     	cellList.add(cells[x+1][y+1]);
     	cellList.add(cells[x+1][y-1]);
-    	for (Cell c : cellList) {
-    		if (c.getValue == 0) {
-    			c.uncover();
-    			uncoverAroundCell(c.getX, c.getY);
+    	for (int c = 0; c < cellList.size(); c++) {
+    		if (cellList.get(c).getValue() == 0) {
+    			cellList.get(c).uncover();
+    			//uncoverAroundCell(cells.);
+    		}
+    		else if (cellList.get(c).getValue() > 0) {
+    			cellList.get(c).uncover();
+    		}
+    		else {
+
     		}
     	}
 //    	Gameplan:
