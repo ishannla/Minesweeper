@@ -243,30 +243,72 @@ public class Board extends JPanel {
     	/* YOUR CODE GOES HERE! */
     	ArrayList<Cell> cellList = new ArrayList<Cell>();
     	
-    Cell first = (cells[x-1][y]);
-    	if (first.getValue() == 0)
+    Cell first = cells[x-1][y];
+    	if (first.getValue() == 0 && first.isMine() == false) {
+    		first.uncover();
     		uncoverAroundCell((x-1),(y));
-    	
-    	
-    
-    	cellList.add(cells[x-1][y-1]);
-    	cellList.add(cells[x-1][y+1]);
-    	cellList.add(cells[x][y+1]);
-    	cellList.add(cells[x][y-1]);
-    	cellList.add(cells[x+1][y]);
-    	cellList.add(cells[x+1][y+1]);
-    	cellList.add(cells[x+1][y-1]);
-    	for (int c = 0; c < cellList.size(); c++) {
-    		if (cellList.get(c).getValue() == 0) {
-    			cellList.get(c).uncover();
-    			//uncoverAroundCells(cells[row][]
-    		}
-    		else if (cellList.get(c).getValue() > 0) {
-    			cellList.get(c).uncover();
-    		}
-    		else {
-
-    		}
+    	}
+    	else if (first.getValue() > 0 && first.isMine() == false) {
+			first.uncover();
+    	}
+	Cell second = cells[x-1][y-1];
+		if (second.getValue() == 0 && second.isMine() == false) {
+			second.uncover();
+			uncoverAroundCell((x-1),(y-1));
+		}
+		else if (second.getValue() > 0 && second.isMine() == false) {
+			second.uncover();
+		}
+	Cell third = cells[x-1][y+1];
+		if (third.getValue() == 0 && third.isMine() == false) {
+			third.uncover();
+			uncoverAroundCell((x-1),(y+1));
+		}
+		else if (third.getValue() > 0 && third.isMine() == false) {
+			third.uncover();
+		}
+	Cell fourth = cells[x][y+1];
+		if (fourth.getValue() == 0 && fourth.isMine() == false) {
+			fourth.uncover();
+			uncoverAroundCell((x),(y+1));
+		}
+		else if (fourth.getValue() > 0 && fourth.isMine() == false) {
+			fourth.uncover();
+		}
+	Cell fifth = cells[x][y-1];
+		if (fifth.getValue() == 0 && fifth.isMine() == false) {
+			fifth.uncover();
+			uncoverAroundCell((x),(y-1));
+		}
+		else if (fifth.getValue() > 0 && fifth.isMine() == false) {
+			fifth.uncover();
+		}
+	Cell sixth = cells[x+1][y];
+		if (sixth.getValue() == 0 && sixth.isMine() == false) {
+			sixth.uncover();
+			uncoverAroundCell((x+1),(y));
+		}
+		else if (sixth.getValue() > 0 && sixth.isMine() == false) {
+			sixth.uncover();
+		}
+	Cell seventh = cells[x+1][y+1];
+		if (seventh.getValue() == 0 && seventh.isMine() == false) {
+			seventh.uncover();
+			uncoverAroundCell((x+1),(y+1));
+		}
+		else if (seventh.getValue() > 0 && seventh.isMine() == false) {
+			seventh.uncover();
+		}
+	Cell eighth = cells[x+1][y-1];
+		if (eighth.getValue() == 0 && eighth.isMine() == false) {
+			eighth.uncover();
+			uncoverAroundCell((x+1),(y-1));
+		}
+		else if (eighth.getValue() > 0 && eighth.isMine() == false) {
+			eighth.uncover();
+		}
+		else {
+			// for cells that have mines --> keep them covered
     	}
 //    	Gameplan:
 //    		- Method initially checks the value of the 8 cells around the current cell 
