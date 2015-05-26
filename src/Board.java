@@ -254,7 +254,7 @@ public class Board extends JPanel {
     	for (int c = 0; c < cellList.size(); c++) {
     		if (cellList.get(c).getValue() == 0) {
     			cellList.get(c).uncover();
-    			//uncoverAroundCell(cells.);
+    			//uncoverAroundCells(cells[row][]
     		}
     		else if (cellList.get(c).getValue() > 0) {
     			cellList.get(c).uncover();
