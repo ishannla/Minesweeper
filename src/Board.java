@@ -242,8 +242,13 @@ public class Board extends JPanel {
     	
     	/* YOUR CODE GOES HERE! */
     	ArrayList<Cell> cellList = new ArrayList<Cell>();
-    	cellList.add(cells[x][y]);
-    	cellList.add(cells[x-1][y]);
+    	
+    Cell first = (cells[x-1][y]);
+    	if (first.getValue() == 0)
+    		uncoverAroundCell((x-1),(y));
+    	
+    	
+    
     	cellList.add(cells[x-1][y-1]);
     	cellList.add(cells[x-1][y+1]);
     	cellList.add(cells[x][y+1]);
