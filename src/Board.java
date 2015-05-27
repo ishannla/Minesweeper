@@ -425,7 +425,11 @@ public class Board extends JPanel {
     	if (first.getValue() > 0) {
     		first.uncover();
     	}
-    	else if (first.getValue() == 0 && first.isMine() == false){
+    	else if (first.getValue() == 0) {
+    		first.uncover();
+    	}
+    			
+    	else {
     		first.uncover();
     		if (x == 0 && y == 0) { // top left corner
     	    	Cell  right = cells[x][y+1];
