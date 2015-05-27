@@ -423,32 +423,32 @@ public class Board extends JPanel {
     private void uncoverAroundCell(int x, int y) {
     	
     	if (x == 0 && y == 0) { // top left corner
-    	Cell  left = cells[x][y-1];
-			if (left.getValue() == 0 && left.isMine() == false) {
-				left.uncover();
+    	Cell  right = cells[x][y+1];
+			if (right.getValue() == 0 && right.isMine() == false) {
+				right.uncover();
 				uncoverAroundCell((x),(y-1));
 			}
-			else if (left.getValue() > 0 && left.isMine() == false) {
-				left.uncover();
+			else if (right.getValue() > 0 && right.isMine() == false) {
+				right.uncover();
 			}
-		Cell bottom = cells[x+1][y];
-			if (bottom.getValue() == 0 && bottom.isMine() == false) {
-				bottom.uncover();
+		Cell bot = cells[x+1][y];
+			if (bot.getValue() == 0 && bot.isMine() == false) {
+				bot.uncover();
 				uncoverAroundCell((x+1),(y));
 			}
-			else if (bottom.getValue() > 0 && bottom.isMine() == false) {
-				bottom.uncover();
+			else if (bot.getValue() > 0 && bot.isMine() == false) {
+				bot.uncover();
 			}
-		Cell bottomLeft = cells[x+1][y-1];
-			if (bottomLeft.getValue() == 0 && bottomLeft.isMine() == false) {
-				bottomLeft.uncover();
+		Cell bottomRight = cells[x+1][y+1];
+			if (bottomRight.getValue() == 0 && bottomRight.isMine() == false) {
+				bottomRight.uncover();
 				uncoverAroundCell((x+1),(y-1));
 			}
-			else if (bottomLeft.getValue() > 0 && bottomLeft.isMine() == false) {
-				bottomLeft.uncover();
+			else if (bottomRight.getValue() > 0 && bottomRight.isMine() == false) {
+				bottomRight.uncover();
 			}
     	}
-    	else if (x == 15 && y == 0) { // bottom left corner
+    	else if (x == 15 && y == 0) { // bot left corner
   	    Cell top = cells[x-1][y];
     		if (top.getValue() == 0 && top.isMine() == false) {
     			top.uncover();
@@ -475,32 +475,32 @@ public class Board extends JPanel {
 			}
    	    }
    	    else if (x == 0 && y == 15) { // top left corner
-    	Cell top = cells[x-1][y];
-     		if (top.getValue() == 0 && top.isMine() == false) {
-      			top.uncover();
+    	Cell left = cells[x-1][y];
+     		if (left.getValue() == 0 && left.isMine() == false) {
+      			left.uncover();
       			uncoverAroundCell((x-1),(y));
       		}
-      		else if (top.getValue() > 0 && top.isMine() == false) {
-  				top.uncover();
+      		else if (left.getValue() > 0 && left.isMine() == false) {
+  				left.uncover();
       		}
-     	Cell topLeft = cells[x-1][y-1];
- 			if (topLeft.getValue() == 0 && topLeft.isMine() == false) {
- 				topLeft.uncover();
+     	Cell botLeft = cells[x-1][y-1];
+ 			if (botLeft.getValue() == 0 && botLeft.isMine() == false) {
+ 				botLeft.uncover();
  				uncoverAroundCell((x-1),(y-1));
  			}
- 			else if (topLeft.getValue() > 0 && topLeft.isMine() == false) {
- 				topLeft.uncover();
+ 			else if (botLeft.getValue() > 0 && botLeft.isMine() == false) {
+ 				botLeft.uncover();
  			}
- 		Cell left = cells[x][y-1];
- 			if (left.getValue() == 0 && left.isMine() == false) {
- 				left.uncover();
+ 		Cell bot = cells[x][y-1];
+ 			if (bot.getValue() == 0 && bot.isMine() == false) {
+ 				bot.uncover();
  				uncoverAroundCell((x),(y-1));
  			}
- 			else if (left.getValue() > 0 && left.isMine() == false) {
- 				left.uncover();
+ 			else if (bot.getValue() > 0 && bot.isMine() == false) {
+ 				bot.uncover();
  			}
         }
-   	    else if (x == 15 && y == 15) { // bottom right corner
+   	    else if (x == 15 && y == 15) { // bot right corner
    	    Cell topLeft = cells[x-1][y-1];
 			if (topLeft.getValue() == 0 && topLeft.isMine() == false) {
 				topLeft.uncover();
@@ -543,13 +543,13 @@ public class Board extends JPanel {
 			else if (left.getValue() > 0 && left.isMine() == false) {
 				left.uncover();
 			}
-		Cell bottom = cells[x+1][y];
-			if (bottom.getValue() == 0 && bottom.isMine() == false) {
-				bottom.uncover();
+		Cell bot = cells[x+1][y];
+			if (bot.getValue() == 0 && bot.isMine() == false) {
+				bot.uncover();
 				uncoverAroundCell((x+1),(y));
 			}
-			else if (bottom.getValue() > 0 && bottom.isMine() == false) {
-				bottom.uncover();
+			else if (bot.getValue() > 0 && bot.isMine() == false) {
+				bot.uncover();
 			}
 		Cell bottomRight = cells[x+1][y+1];
 			if (bottomRight.getValue() == 0 && bottomRight.isMine() == false) {
@@ -635,13 +635,13 @@ public class Board extends JPanel {
 			else if (right.getValue() > 0 && right.isMine() == false) {
 				right.uncover();
 			}
-    	Cell bottom = cells[x+1][y];
-			if (bottom.getValue() == 0 && bottom.isMine() == false) {
-				bottom.uncover();
+    	Cell bot = cells[x+1][y];
+			if (bot.getValue() == 0 && bot.isMine() == false) {
+				bot.uncover();
 				uncoverAroundCell((x+1),(y));
 			}
-			else if (bottom.getValue() > 0 && bottom.isMine() == false) {
-				bottom.uncover();
+			else if (bot.getValue() > 0 && bot.isMine() == false) {
+				bot.uncover();
 			}
 		Cell bottomRight = cells[x+1][y+1];
 			if (bottomRight.getValue() == 0 && bottomRight.isMine() == false) {
@@ -677,13 +677,13 @@ public class Board extends JPanel {
 			else if (left.getValue() > 0 && left.isMine() == false) {
 				left.uncover();
 			}
- 		Cell bottom = cells[x+1][y];
-			if (bottom.getValue() == 0 && bottom.isMine() == false) {
-				bottom.uncover();
+ 		Cell bot = cells[x+1][y];
+			if (bot.getValue() == 0 && bot.isMine() == false) {
+				bot.uncover();
 				uncoverAroundCell((x+1),(y));
 			}
-			else if (bottom.getValue() > 0 && bottom.isMine() == false) {
-				bottom.uncover();
+			else if (bot.getValue() > 0 && bot.isMine() == false) {
+				bot.uncover();
 			}
 		Cell bottomLeft = cells[x+1][y-1];
 			if (bottomLeft.getValue() == 0 && bottomLeft.isMine() == false) {
@@ -735,13 +735,13 @@ public class Board extends JPanel {
  			else if (left.getValue() > 0 && left.isMine() == false) {
  				left.uncover();
  			}
- 		Cell bottom = cells[x+1][y];
- 			if (bottom.getValue() == 0 && bottom.isMine() == false) {
- 				bottom.uncover();
+ 		Cell bot = cells[x+1][y];
+ 			if (bot.getValue() == 0 && bot.isMine() == false) {
+ 				bot.uncover();
  				uncoverAroundCell((x+1),(y));
  			}
- 			else if (bottom.getValue() > 0 && bottom.isMine() == false) {
- 				bottom.uncover();
+ 			else if (bot.getValue() > 0 && bot.isMine() == false) {
+ 				bot.uncover();
  			}
  		Cell bottomRight = cells[x+1][y+1];
  			if (bottomRight.getValue() == 0 && bottomRight.isMine() == false) {
