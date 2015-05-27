@@ -105,8 +105,140 @@ public class Board extends JPanel {
      * You should explore nearby cells and return an accurate count of
      * nearby mines.
      */
-    private int countMinesAround(int x, int y) {
-        int count = 0;
+    private int countMinesAround(int x, int y) {//Dorothy's method
+      
+    	int count = 0;
+    /*
+    	if (x == 0 && y == 0) {
+        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
+        	Cell right = cells[x][y+1];
+        	Cell botRight = cells[x+1][y+1];
+        	Cell bot = cells[x+1][y];
+        	cellCheck.add(right); cellCheck.add(botRight); cellCheck.add(bot);
+        	for (int c = 0; c < cellCheck.size(); c++) {
+        		if (cellCheck.get(c).isMine()) {
+        			count++;
+        		}
+        	}
+        	return count;
+        }
+        else if (x == 0 && y == 16) {
+        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
+        	Cell left = cells[x][y-1];
+        	Cell botLeft = cells[x+1][y-1];
+        	Cell bot = cells[x+1][y];
+        	cellCheck.add(left); cellCheck.add(botLeft); cellCheck.add(bot);
+        	for (int c = 0; c < cellCheck.size(); c++) {
+        		if (cellCheck.get(c).isMine()) {
+        			count++;
+        		}
+        	}
+        	return count;
+        }
+        else if (x == 16 && y == 0) {
+        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
+        	Cell right = cells[x][y+1];
+        	Cell topRight = cells[x-1][y+1];
+        	Cell top = cells[x-1][y];
+        	cellCheck.add(right); cellCheck.add(topRight); cellCheck.add(top);
+        	for (int c = 0; c < cellCheck.size(); c++) {
+        		if (cellCheck.get(c).isMine()) {
+        			count++;
+        		}
+        	}
+        	return count;
+        }
+        else if (x == 16 && y == 16) {
+        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
+        	Cell left = cells[x][y-1];
+        	Cell topLeft = cells[x-1][y-1];
+        	Cell top = cells[x-1][y];
+        	cellCheck.add(left); cellCheck.add(topLeft); cellCheck.add(top);
+        	for (int c = 0; c < cellCheck.size(); c++) {
+        		if (cellCheck.get(c).isMine()) {
+        			count++;
+        		}
+        	}
+        	return count;
+        }
+        else if (x == 0) {
+        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
+        	Cell right = cells[x][y+1];
+        	Cell left = cells[x][y-1];
+        	Cell bot = cells[x+1][y];
+        	Cell botRight = cells[x+1][y+1];
+        	Cell botLeft = cells[x+1][y-1];
+        	cellCheck.add(right); cellCheck.add(left); cellCheck.add(bot); cellCheck.add(botRight); cellCheck.add(botLeft);
+        	for (int c = 0; c < cellCheck.size(); c++) {
+        		if (cellCheck.get(c).isMine()) {
+        			count++;
+        		}
+        	}
+        	return count;
+        }
+        else if (x == 16) {
+        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
+        	Cell right = cells[x][y+1];
+        	Cell left = cells[x][y-1];
+        	Cell top = cells[x-1][y];
+        	Cell topRight = cells[x-1][y+1];
+        	Cell topLeft = cells[x-1][y-1];
+        	cellCheck.add(right); cellCheck.add(left); cellCheck.add(top); cellCheck.add(topRight); cellCheck.add(topLeft);
+        	for (int c = 0; c < cellCheck.size(); c++) {
+        		if (cellCheck.get(c).isMine()) {
+        			count++;
+        		}
+        	}
+        	return count;
+        }
+        else if (y == 0) {
+        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
+        	Cell top = cells[x-1][y];
+        	Cell topRight = cells[x-1][y+1];
+        	Cell right = cells[x][y+1];
+        	Cell botRight = cells[x+1][y+1];
+        	Cell bot = cells[x+1][y];
+        	cellCheck.add(top); cellCheck.add(topRight); cellCheck.add(right); cellCheck.add(botRight); cellCheck.add(bot);
+        	for (int c = 0; c < cellCheck.size(); c++) {
+        		if (cellCheck.get(c).isMine()) {
+        			count++;
+        		}
+        	}
+        	return count;
+        }
+        else if (y == 16) {
+        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
+        	Cell top = cells[x-1][y];
+        	Cell topLeft = cells[x-1][y-1];
+        	Cell left = cells[x][y-1];
+        	Cell botLeft = cells[x+1][y-1];
+        	Cell bot = cells[x+1][y];
+        	cellCheck.add(top); cellCheck.add(topLeft); cellCheck.add(left); cellCheck.add(botLeft); cellCheck.add(bot);
+        	for (int c = 0; c < cellCheck.size(); c++) {
+        		if (cellCheck.get(c).isMine()) {
+        			count++;
+        		}
+        	}
+        	return count;
+        }
+        else {
+        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
+        	Cell top = cells[x-1][y];
+        	Cell topRight = cells[x-1][y+1];
+        	Cell right = cells[x][y+1];
+        	Cell botRight = cells[x+1][y+1];
+        	Cell bot = cells[x+1][y];
+        	Cell botLeft = cells[x+1][y-1];
+        	Cell left = cells[x][y-1];
+        	Cell topLeft = cells[x-1][y-1];
+        	cellCheck.add(top); cellCheck.add(topRight); cellCheck.add(right); cellCheck.add(botRight); cellCheck.add(bot); cellCheck.add(botLeft); cellCheck.add(left); cellCheck.add(topLeft);
+        	for (int c = 0; c < cellCheck.size(); c++) {
+        		if (cellCheck.get(c).isMine()) {
+        			count++;
+        		}
+        	}
+        	return count;
+        }  
         
         /* YOUR CODE GOES HERE! */ 
         
@@ -169,10 +301,10 @@ public class Board extends JPanel {
      * uncover the cell and reveal its contents based on whether the cell is a mine,
      * is marked, or is marked incorrectly.
      */
-    private int decideImageType(Cell cell) {//Greg's method
+    private int decideImageType(Cell cell) {//Greg's method 
         int imageType = cell.getValue();
-
-        /* YOUR CODE GOES HERE! */
+        
+        /* YOUR CODE GOES HERE! */ /*
         if (inGame){
         	if (cell.isCovered()){
         		return 10;//display covered image
@@ -212,7 +344,7 @@ public class Board extends JPanel {
 //        			- Display all of the mines 
 //        			- If the cell has a mine, display it no matter what 
 
-// 		lol tbh I don't understand this method 100% I will ask them more on Monday
+// 		lol tbh I don't understand this method 100% I will ask them more on Monday */
         
         return imageType;
     }
