@@ -329,6 +329,31 @@ public class Board extends JPanel {
      */
     private int decideImageType(Cell cell) {
         int imageType = cell.getValue();
+        
+        if (inGame){
+        		if (cell.isCovered())
+        			return 10;//display covered image
+      	
+        		else if (cell.getValue() == 0)
+        			return 0;//display pressed image
+        	
+        		else if (!cell.isCovered() && cell.getValue() != 0)
+        			return cell.getValue();//display correct value
+        	
+        		else if (!cell.isCovered() && cell.isMine())
+        			return 9;//display mine
+        	
+        		else if (cell.isChecked())
+        			return 11;//display marked correctly image
+        
+        }
+        else if (!inGame){
+        	if (cell.isMine())
+        		return 9;
+        	cell.uncover(); 
+        	
+        	
+        	}
 
         /* YOUR CODE GOES HERE! */
         
