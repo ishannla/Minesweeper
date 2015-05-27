@@ -3,9 +3,12 @@ import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 import java.util.*;
 
 public class Board extends JPanel {
@@ -327,32 +330,29 @@ public class Board extends JPanel {
      * uncover the cell and reveal its contents based on whether the cell is a mine,
      * is marked, or is marked incorrectly.
      */
+    
     private int decideImageType(Cell cell) {
         int imageType = cell.getValue();
         
-        if (inGame){
-        		if (cell.isCovered())
-        			return 10;//display covered image
-      	
-        		else if (cell.getValue() == 0)
+        if (inGame)	{
+        	
+        		if (!cell.isCovered() && cell.getValue() < 1)
         			return 0;//display pressed image
         	
+        		else if (cell.isCovered())
+        			return 10;//display covered image
+
         		else if (!cell.isCovered() && cell.getValue() != 0)
         			return cell.getValue();//display correct value
-        	
-        		else if (!cell.isCovered() && cell.isMine())
-        			return 9;//display mine
-        	
-        		else if (cell.isChecked())
-        			return 11;//display marked correctly image
-        
+        	 
         }
-        else if (!inGame){
-        	if (cell.isMine())
-        		return 9;
-        	cell.uncover(); 
+        
+        else if (!inGame)	{
+      
+        		if (cell.isMine())
+        			return 9;
         	
-        	
+        		cell.uncover(); 
         	}
 
         /* YOUR CODE GOES HERE! */
@@ -420,7 +420,55 @@ public class Board extends JPanel {
      * 
      * This method is used to uncover nearby non-empty cells.
      */
-    private void uncoverAroundCell(int x, int y) {
+    private void uncoverAroundCell(int x, int y) { 
+    	
+     	Cell first = cells[x][y];
+     	//JOptionPane.showMessageDialog(null,"Coordinate = " + x + ", " + y + " Val = " + first.getValue(),"TITLE",JOptionPane.WARNING_MESSAGE);
+     	
+     	//Cell one = cells[x + 1][y];
+     	JOptionPane.showMessageDialog(null,"Clicked on = " + x + ", " + y + " Val = " + first.getValue(),"TITLE",JOptionPane.WARNING_MESSAGE);
+     	//JOptionPane.showMessageDialog(null,"Right Coordinate = " + (x + 1) + ", " + y + " Val = " + first.getValue(),"TITLE",JOptionPane.WARNING_MESSAGE);
+     ///	if (one.getValue() > 0)
+     	//	JOptionPane.showMessageDialog(null, "Uncover", "TITLE",JOptionPane.WARNING_MESSAGE);
+     	
+     	
+     	
+     	/*
+     	if (first.getValue() == 0) {
+     		Cell one = cells[x + 1][y];
+     		one.uncover();
+     		Cell two = cells[x - 1][y];
+     		two.uncover();
+     		Cell three = cells[x][y + 1];
+     		three.uncover();
+     		Cell four = cells[x][y - 1];
+     		four.uncover();
+     		Cell five = cells[x + 1][y + 1];
+     		five.uncover();
+     		Cell six = cells[x + 1][y - 1];
+     		six.uncover();
+     		Cell seven = cells[x - 1][y + 1];
+     		seven.uncover();
+     		Cell eight = cells[x - 1][y - 1];
+     		eight.uncover();
+     	} */
+     	/*
+     	if (first.getValue() >= 1) {
+     		first.uncover(); 
+     		uncoverAroundCell(x + 1, y);
+     		uncoverAroundCell(x - 1, y);
+     		uncoverAroundCell(x, y + 1);
+     		uncoverAroundCell(x, y - 1);
+     		uncoverAroundCell(x - 1, y + 1);
+     		uncoverAroundCell(x - 1, y - 1);
+     		uncoverAroundCell(x + 1, y + 1);
+     		uncoverAroundCell(x + 1, y - 1); 
+     	}*/
+     	
+     		
+     	
+    	
+    	/*
     	Cell first = cells[x][y];
     	if (first.getValue() > 0) {
     		first.uncover();
@@ -651,7 +699,7 @@ public class Board extends JPanel {
 //    		- Method initially checks the value of the 8 cells around the current cell 
 //    				- If the cell has a value of 0, uncover the cell and recursively call uncoverAroundCell on that cell
 //    				- If the cell has a value greater than 0, uncover the cell 
-//					- If the cell has a mine, keep it covered
+//					- If the cell has a mine, keep it covered */
     	
     }
 
@@ -662,7 +710,7 @@ public class Board extends JPanel {
             }
         }
 
-        return false;
+        return false; 
     }
 
     private void clearAllCells() {
