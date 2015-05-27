@@ -169,15 +169,32 @@ public class Board extends JPanel {
      * uncover the cell and reveal its contents based on whether the cell is a mine,
      * is marked, or is marked incorrectly.
      */
-    private int decideImageType(Cell cell) {//Gregs method
+    private int decideImageType(Cell cell) {//Greg's method
         int imageType = cell.getValue();
 
         /* YOUR CODE GOES HERE! */
         if (inGame){
-        	
+        	if (cell.isCovered()){
+        		//display covered image
+        	}
+        	else if (!cell.isCovered() && cell.getValue() == 0){
+        		//display pressed image
+        	}
+        	else if (!cell.isCovered() && cell.getValue() != 0){
+        		//display correct value
+        	}
+        	else if (!cell.isCovered() && cell.isMine()){
+        		//display mine
+        	}
+        	else if (cell.isChecked()){
+        		//display marked correctly image
+        	}
+        	else if (!cell.isChecked()){
+        		//display marked incorrectly image
+        	}
         }
         else {
-        	
+        	cell.uncover();
         }
 //    	Gameplan: 
 //		- There are 13 Images (0 = Pressed, 1 - 8 = Values, 9 = Mine, 10 = Covered, 11 = Marked Correctly, 12 = Marked Incorrectly )
