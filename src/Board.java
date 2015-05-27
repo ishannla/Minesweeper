@@ -210,60 +210,58 @@ public class Board extends JPanel {
         } 
         
         else if (y == 0) {
-        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
-        	Cell top = cells[x-1][y];
-        	Cell topRight = cells[x-1][y+1];
-        	Cell right = cells[x][y+1];
-        	Cell botRight = cells[x+1][y+1];
-        	Cell bot = cells[x+1][y];
+        		ArrayList<Cell> cellCheck = new ArrayList<Cell>();
+        		Cell top = cells[x-1][y];
+        		Cell topRight = cells[x-1][y+1];
+        		Cell right = cells[x][y+1];
+        		Cell botRight = cells[x+1][y+1];
+        		Cell bot = cells[x+1][y];
         	
-        	cellCheck.add(top); cellCheck.add(topRight); cellCheck.add(right); cellCheck.add(botRight); cellCheck.add(bot);
+        		cellCheck.add(top); cellCheck.add(topRight); cellCheck.add(right); cellCheck.add(botRight); cellCheck.add(bot);
         	
-        	for (int c = 0; c < cellCheck.size(); c++) {
-        		if (cellCheck.get(c).isMine()) {
-        			count++;
+        		for (int c = 0; c < cellCheck.size(); c++) {
+        			if (cellCheck.get(c).isMine()) 
+        				count++;
         		}
-        	}
         	
         	return count;
         }
         
         else if (y == 15) {
-        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
-        	Cell top = cells[x-1][y];
-        	Cell topLeft = cells[x-1][y-1];
-        	Cell left = cells[x][y-1];
-        	Cell botLeft = cells[x+1][y-1];
-        	Cell bot = cells[x+1][y];
+        		ArrayList<Cell> cellCheck = new ArrayList<Cell>();
+        		Cell top = cells[x-1][y];
+        		Cell topLeft = cells[x-1][y-1];
+        		Cell left = cells[x][y-1];
+        		Cell botLeft = cells[x+1][y-1];
+        		Cell bot = cells[x+1][y];
         	
-        	cellCheck.add(top); cellCheck.add(topLeft); cellCheck.add(left); cellCheck.add(botLeft); cellCheck.add(bot);
+        		cellCheck.add(top); cellCheck.add(topLeft); cellCheck.add(left); cellCheck.add(botLeft); cellCheck.add(bot);
         	
-        	for (int c = 0; c < cellCheck.size(); c++) {
-        		if (cellCheck.get(c).isMine()) {
-        			count++;
+        		for (int c = 0; c < cellCheck.size(); c++) {
+        			if (cellCheck.get(c).isMine()) 
+        				count++;
         		}
-        	}
         	
         	return count;
         }
+        
         else {
-        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
-        	Cell top = cells[x-1][y];
-        	Cell topRight = cells[x-1][y+1];
-        	Cell right = cells[x][y+1];
-        	Cell botRight = cells[x+1][y+1];
-        	Cell bot = cells[x+1][y];
-        	Cell botLeft = cells[x+1][y-1];
-        	Cell left = cells[x][y-1];
-        	Cell topLeft = cells[x-1][y-1];
+        		ArrayList<Cell> cellCheck = new ArrayList<Cell>();
+        		Cell top = cells[x-1][y];
+        		Cell topRight = cells[x-1][y+1];
+        		Cell right = cells[x][y+1];
+        		Cell botRight = cells[x+1][y+1];
+        		Cell bot = cells[x+1][y];
+        		Cell botLeft = cells[x+1][y-1];
+        		Cell left = cells[x][y-1];
+        		Cell topLeft = cells[x-1][y-1];
         	
-        	cellCheck.add(top); cellCheck.add(topRight); cellCheck.add(right); cellCheck.add(botRight); cellCheck.add(bot); cellCheck.add(botLeft); cellCheck.add(left); cellCheck.add(topLeft);
+        		cellCheck.add(top); cellCheck.add(topRight); cellCheck.add(right); cellCheck.add(botRight); cellCheck.add(bot); cellCheck.add(botLeft); cellCheck.add(left); cellCheck.add(topLeft);
         	
-        	for (int c = 0; c < cellCheck.size(); c++) {
-        		if (cellCheck.get(c).isMine()) {
-        			count++;
+        		for (int c = 0; c < cellCheck.size(); c++) {
+        			if (cellCheck.get(c).isMine()) 
+        				count++;
         		}
-        	}
         	
         	return count;
         } 
@@ -398,8 +396,36 @@ public class Board extends JPanel {
      * This method is used to uncover nearby non-empty cells.
      */
     private void uncoverAroundCell(int x, int y) {
-    	
-    	/* YOUR CODE GOES HERE! */
+    	/*
+    	if (x == 0 && y == 0) {
+    		
+    	}
+    	else if (x == 15 && y == 0) {
+  	    	
+   	    }
+   	    else if (x == 0 && y == 15) {
+    	    	
+        }
+   	    else if (x == 15 && y == 15) {
+   	    	
+   	    }
+   	    else if (x == 0) {
+   	    	
+    	}
+        else if (x == 15) {
+   	    	
+   	    }
+   	    else if (y == 0) {
+    	    	
+   	    }
+   	    else if (y == 15) {
+    	    	
+        }
+   	    else {
+   	    	
+   	    }
+
+    	*/
     	
 //    	Gameplan:
 //    		- Method initially checks the value of the 8 cells around the current cell 
