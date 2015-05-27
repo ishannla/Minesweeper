@@ -209,8 +209,6 @@ public class Board extends JPanel {
 	        	return count;
         } 
         
-        /*
-        
         else if (y == 0) {
         	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
         	Cell top = cells[x-1][y];
@@ -218,27 +216,34 @@ public class Board extends JPanel {
         	Cell right = cells[x][y+1];
         	Cell botRight = cells[x+1][y+1];
         	Cell bot = cells[x+1][y];
+        	
         	cellCheck.add(top); cellCheck.add(topRight); cellCheck.add(right); cellCheck.add(botRight); cellCheck.add(bot);
+        	
         	for (int c = 0; c < cellCheck.size(); c++) {
         		if (cellCheck.get(c).isMine()) {
         			count++;
         		}
         	}
+        	
         	return count;
         }
-        else if (y == 16) {
+        
+        else if (y == 15) {
         	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
         	Cell top = cells[x-1][y];
         	Cell topLeft = cells[x-1][y-1];
         	Cell left = cells[x][y-1];
         	Cell botLeft = cells[x+1][y-1];
         	Cell bot = cells[x+1][y];
+        	
         	cellCheck.add(top); cellCheck.add(topLeft); cellCheck.add(left); cellCheck.add(botLeft); cellCheck.add(bot);
+        	
         	for (int c = 0; c < cellCheck.size(); c++) {
         		if (cellCheck.get(c).isMine()) {
         			count++;
         		}
         	}
+        	
         	return count;
         }
         else {
@@ -251,15 +256,17 @@ public class Board extends JPanel {
         	Cell botLeft = cells[x+1][y-1];
         	Cell left = cells[x][y-1];
         	Cell topLeft = cells[x-1][y-1];
+        	
         	cellCheck.add(top); cellCheck.add(topRight); cellCheck.add(right); cellCheck.add(botRight); cellCheck.add(bot); cellCheck.add(botLeft); cellCheck.add(left); cellCheck.add(topLeft);
+        	
         	for (int c = 0; c < cellCheck.size(); c++) {
         		if (cellCheck.get(c).isMine()) {
         			count++;
         		}
         	}
+        	
         	return count;
         } 
-         YOUR CODE GOES HERE! */ 
         
 //        Gameplan: (Will be divided into steps - check in with me before you move to next step)
 //           1. Add a counter for the corner cells 
@@ -275,7 +282,6 @@ public class Board extends JPanel {
 //              only has 5 cells surrounding it instead of 9
 //            - Return the count
 
-        return count;
     }
 
     public void paint(Graphics g) {
