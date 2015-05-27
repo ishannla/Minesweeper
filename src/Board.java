@@ -111,8 +111,11 @@ public class Board extends JPanel {
         
         /* YOUR CODE GOES HERE! */ 
         
-//        Gameplan:
-//           - Need to initialize a counter variable
+//        Gameplan: (Will be divided into steps - check in with me before you move to next step)
+//           1. Add a counter for the corner cells 
+//     		 2. Add a counter for the border cells 
+//           3. Add a counter for the rest of the cells 
+        
 //           - Check all 8 of the cells around the current cell 
 //           - If a cell has a mine in it, add 1 to the counter
 //             (Check the Mines class to see the relevant methods)
