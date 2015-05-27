@@ -175,26 +175,27 @@ public class Board extends JPanel {
         /* YOUR CODE GOES HERE! */
         if (inGame){
         	if (cell.isCovered()){
-        		//display covered image
+        		return 10;//display covered image
         	}
         	else if (!cell.isCovered() && cell.getValue() == 0){
-        		//display pressed image
+        		return 0;//display pressed image
         	}
         	else if (!cell.isCovered() && cell.getValue() != 0){
-        		//display correct value
+        		return cell.getValue();//display correct value
         	}
         	else if (!cell.isCovered() && cell.isMine()){
-        		//display mine
+        		return 9;//display mine
         	}
         	else if (cell.isChecked()){
-        		//display marked correctly image
+        		return 11;//display marked correctly image
         	}
         	else if (!cell.isChecked()){
-        		//display marked incorrectly image
+        		return 12;//display marked incorrectly image
         	}
         }
         else {
         	cell.uncover();
+        	//what to return?
         }
 //    	Gameplan: 
 //		- There are 13 Images (0 = Pressed, 1 - 8 = Values, 9 = Mine, 10 = Covered, 11 = Marked Correctly, 12 = Marked Incorrectly )
