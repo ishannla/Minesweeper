@@ -6,7 +6,7 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.util.*;
+
 
 public class Board extends JPanel {
     // Constants
@@ -82,6 +82,7 @@ public class Board extends JPanel {
     }
 
     
+
     private void setMineCounts() {
 
         for (int i = 0; i < this.columns; ++i) {
@@ -105,140 +106,8 @@ public class Board extends JPanel {
      * You should explore nearby cells and return an accurate count of
      * nearby mines.
      */
-    private int countMinesAround(int x, int y) {//Dorothy's method
-      
-    	int count = 0;
-    /*
-    	if (x == 0 && y == 0) {
-        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
-        	Cell right = cells[x][y+1];
-        	Cell botRight = cells[x+1][y+1];
-        	Cell bot = cells[x+1][y];
-        	cellCheck.add(right); cellCheck.add(botRight); cellCheck.add(bot);
-        	for (int c = 0; c < cellCheck.size(); c++) {
-        		if (cellCheck.get(c).isMine()) {
-        			count++;
-        		}
-        	}
-        	return count;
-        }
-        else if (x == 0 && y == 16) {
-        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
-        	Cell left = cells[x][y-1];
-        	Cell botLeft = cells[x+1][y-1];
-        	Cell bot = cells[x+1][y];
-        	cellCheck.add(left); cellCheck.add(botLeft); cellCheck.add(bot);
-        	for (int c = 0; c < cellCheck.size(); c++) {
-        		if (cellCheck.get(c).isMine()) {
-        			count++;
-        		}
-        	}
-        	return count;
-        }
-        else if (x == 16 && y == 0) {
-        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
-        	Cell right = cells[x][y+1];
-        	Cell topRight = cells[x-1][y+1];
-        	Cell top = cells[x-1][y];
-        	cellCheck.add(right); cellCheck.add(topRight); cellCheck.add(top);
-        	for (int c = 0; c < cellCheck.size(); c++) {
-        		if (cellCheck.get(c).isMine()) {
-        			count++;
-        		}
-        	}
-        	return count;
-        }
-        else if (x == 16 && y == 16) {
-        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
-        	Cell left = cells[x][y-1];
-        	Cell topLeft = cells[x-1][y-1];
-        	Cell top = cells[x-1][y];
-        	cellCheck.add(left); cellCheck.add(topLeft); cellCheck.add(top);
-        	for (int c = 0; c < cellCheck.size(); c++) {
-        		if (cellCheck.get(c).isMine()) {
-        			count++;
-        		}
-        	}
-        	return count;
-        }
-        else if (x == 0) {
-        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
-        	Cell right = cells[x][y+1];
-        	Cell left = cells[x][y-1];
-        	Cell bot = cells[x+1][y];
-        	Cell botRight = cells[x+1][y+1];
-        	Cell botLeft = cells[x+1][y-1];
-        	cellCheck.add(right); cellCheck.add(left); cellCheck.add(bot); cellCheck.add(botRight); cellCheck.add(botLeft);
-        	for (int c = 0; c < cellCheck.size(); c++) {
-        		if (cellCheck.get(c).isMine()) {
-        			count++;
-        		}
-        	}
-        	return count;
-        }
-        else if (x == 16) {
-        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
-        	Cell right = cells[x][y+1];
-        	Cell left = cells[x][y-1];
-        	Cell top = cells[x-1][y];
-        	Cell topRight = cells[x-1][y+1];
-        	Cell topLeft = cells[x-1][y-1];
-        	cellCheck.add(right); cellCheck.add(left); cellCheck.add(top); cellCheck.add(topRight); cellCheck.add(topLeft);
-        	for (int c = 0; c < cellCheck.size(); c++) {
-        		if (cellCheck.get(c).isMine()) {
-        			count++;
-        		}
-        	}
-        	return count;
-        }
-        else if (y == 0) {
-        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
-        	Cell top = cells[x-1][y];
-        	Cell topRight = cells[x-1][y+1];
-        	Cell right = cells[x][y+1];
-        	Cell botRight = cells[x+1][y+1];
-        	Cell bot = cells[x+1][y];
-        	cellCheck.add(top); cellCheck.add(topRight); cellCheck.add(right); cellCheck.add(botRight); cellCheck.add(bot);
-        	for (int c = 0; c < cellCheck.size(); c++) {
-        		if (cellCheck.get(c).isMine()) {
-        			count++;
-        		}
-        	}
-        	return count;
-        }
-        else if (y == 16) {
-        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
-        	Cell top = cells[x-1][y];
-        	Cell topLeft = cells[x-1][y-1];
-        	Cell left = cells[x][y-1];
-        	Cell botLeft = cells[x+1][y-1];
-        	Cell bot = cells[x+1][y];
-        	cellCheck.add(top); cellCheck.add(topLeft); cellCheck.add(left); cellCheck.add(botLeft); cellCheck.add(bot);
-        	for (int c = 0; c < cellCheck.size(); c++) {
-        		if (cellCheck.get(c).isMine()) {
-        			count++;
-        		}
-        	}
-        	return count;
-        }
-        else {
-        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
-        	Cell top = cells[x-1][y];
-        	Cell topRight = cells[x-1][y+1];
-        	Cell right = cells[x][y+1];
-        	Cell botRight = cells[x+1][y+1];
-        	Cell bot = cells[x+1][y];
-        	Cell botLeft = cells[x+1][y-1];
-        	Cell left = cells[x][y-1];
-        	Cell topLeft = cells[x-1][y-1];
-        	cellCheck.add(top); cellCheck.add(topRight); cellCheck.add(right); cellCheck.add(botRight); cellCheck.add(bot); cellCheck.add(botLeft); cellCheck.add(left); cellCheck.add(topLeft);
-        	for (int c = 0; c < cellCheck.size(); c++) {
-        		if (cellCheck.get(c).isMine()) {
-        			count++;
-        		}
-        	}
-        	return count;
-        }  
+    private int countMinesAround(int x, int y) {
+        int count = 0;
         
         /* YOUR CODE GOES HERE! */ 
         
@@ -301,34 +170,11 @@ public class Board extends JPanel {
      * uncover the cell and reveal its contents based on whether the cell is a mine,
      * is marked, or is marked incorrectly.
      */
-    private int decideImageType(Cell cell) {//Greg's method 
+    private int decideImageType(Cell cell) {
         int imageType = cell.getValue();
+
+        /* YOUR CODE GOES HERE! */
         
-        /* YOUR CODE GOES HERE! */ /*
-        if (inGame){
-        	if (cell.isCovered()){
-        		return 10;//display covered image
-        	}
-        	else if (!cell.isCovered() && cell.getValue() == 0){
-        		return 0;//display pressed image
-        	}
-        	else if (!cell.isCovered() && cell.getValue() != 0){
-        		return cell.getValue();//display correct value
-        	}
-        	else if (!cell.isCovered() && cell.isMine()){
-        		return 9;//display mine
-        	}
-        	else if (cell.isChecked()){
-        		return 11;//display marked correctly image
-        	}
-        	else if (!cell.isChecked()){
-        		return 12;//display marked incorrectly image
-        	}
-        }
-        else {
-        	cell.uncover();
-        	//what to return?
-        }
 //    	Gameplan: 
 //		- There are 13 Images (0 = Pressed, 1 - 8 = Values, 9 = Mine, 10 = Covered, 11 = Marked Correctly, 12 = Marked Incorrectly )
 //      - Need to have separate if statements based on whether InGame is true or false
@@ -344,7 +190,7 @@ public class Board extends JPanel {
 //        			- Display all of the mines 
 //        			- If the cell has a mine, display it no matter what 
 
-// 		lol tbh I don't understand this method 100% I will ask them more on Monday */
+// 		lol tbh I don't understand this method 100% I will ask them more on Monday
         
         return imageType;
     }
@@ -393,355 +239,15 @@ public class Board extends JPanel {
      * This method is used to uncover nearby non-empty cells.
      */
     private void uncoverAroundCell(int x, int y) {
+    	
     	/* YOUR CODE GOES HERE! */
-    
-    	/*
-    	if (y == 0 && x != 0 || x != 16) {
-    Cell top = cells[x-1][y];
-     	if (top.getValue() == 0 && top.isMine() == false) {
-     		top.uncover();
-     		uncoverAroundCell((x-1),(y));
-     	}
-     	else if (top.getValue() > 0 && top.isMine() == false) {
- 			top.uncover();
-     	}
-   	Cell topRight = cells[x-1][y+1];
- 		if (topRight.getValue() == 0 && topRight.isMine() == false) {
- 			topRight.uncover();
- 			uncoverAroundCell((x-1),(y+1));
- 		}
- 		else if (topRight.getValue() > 0 && topRight.isMine() == false) {
- 			topRight.uncover();
- 		}
- 	Cell right = cells[x][y+1];
-		if (right.getValue() == 0 && right.isMine() == false) {
-			right.uncover();
-			uncoverAroundCell((x),(y+1));
-		}
-		else if (right.getValue() > 0 && right.isMine() == false) {
-			right.uncover();
-		}
-    Cell bottom = cells[x+1][y];
-		if (bottom.getValue() == 0 && bottom.isMine() == false) {
-			bottom.uncover();
-			uncoverAroundCell((x+1),(y));
-		}
-		else if (bottom.getValue() > 0 && bottom.isMine() == false) {
-			bottom.uncover();
-		}
-	Cell bottomRight = cells[x+1][y+1];
-		if (bottomRight.getValue() == 0 && bottomRight.isMine() == false) {
-			bottomRight.uncover();
-			uncoverAroundCell((x+1),(y+1));
-		}
-		else if (bottomRight.getValue() > 0 && bottomRight.isMine() == false) {
-			bottomRight.uncover();
-		}
-    }
-    else if (y == 16 && x != 0 || x != 16) {
-    Cell top = cells[x-1][y];
-     	if (top.getValue() == 0 && top.isMine() == false) {
-     		top.uncover();
-     		uncoverAroundCell((x-1),(y));
-     	}
-     	else if (top.getValue() > 0 && top.isMine() == false) {
- 			top.uncover();
-     	}
- 	Cell topLeft = cells[x-1][y-1];
- 		if (topLeft.getValue() == 0 && topLeft.isMine() == false) {
- 			topLeft.uncover();
- 			uncoverAroundCell((x-1),(y-1));
- 		}
- 		else if (topLeft.getValue() > 0 && topLeft.isMine() == false) {
- 			topLeft.uncover();
- 		}
- 	Cell left = cells[x][y-1];
-		if (left.getValue() == 0 && left.isMine() == false) {
-			left.uncover();
-			uncoverAroundCell((x),(y-1));
-		}
-		else if (left.getValue() > 0 && left.isMine() == false) {
-			left.uncover();
-		}
- 	Cell bottom = cells[x+1][y];
-		if (bottom.getValue() == 0 && bottom.isMine() == false) {
-			bottom.uncover();
-			uncoverAroundCell((x+1),(y));
-		}
-		else if (bottom.getValue() > 0 && bottom.isMine() == false) {
-			bottom.uncover();
-		}
-	Cell bottomLeft = cells[x+1][y-1];
-		if (bottomLeft.getValue() == 0 && bottomLeft.isMine() == false) {
-			bottomLeft.uncover();
-			uncoverAroundCell((x+1),(y-1));
-		}
-		else if (bottomLeft.getValue() > 0 && bottomLeft.isMine() == false) {
-			bottomLeft.uncover();
-		}
-    }
-    else if (x == 0 && y != 0 || y != 16) {
-    Cell right = cells[x][y+1];
-		if (right.getValue() == 0 && right.isMine() == false) {
-			right.uncover();
-			uncoverAroundCell((x),(y+1));
-		}
-		else if (right.getValue() > 0 && right.isMine() == false) {
-			right.uncover();
-		}
-	Cell left = cells[x][y-1];
-		if (left.getValue() == 0 && left.isMine() == false) {
-			left.uncover();
-			uncoverAroundCell((x),(y-1));
-		}
-		else if (left.getValue() > 0 && left.isMine() == false) {
-			left.uncover();
-		}
-	Cell bottom = cells[x+1][y];
-		if (bottom.getValue() == 0 && bottom.isMine() == false) {
-			bottom.uncover();
-			uncoverAroundCell((x+1),(y));
-		}
-		else if (bottom.getValue() > 0 && bottom.isMine() == false) {
-			bottom.uncover();
-		}
-	Cell bottomRight = cells[x+1][y+1];
-		if (bottomRight.getValue() == 0 && bottomRight.isMine() == false) {
-			bottomRight.uncover();
-			uncoverAroundCell((x+1),(y+1));
-		}
-		else if (bottomRight.getValue() > 0 && bottomRight.isMine() == false) {
-			bottomRight.uncover();
-		}
-	Cell bottomLeft = cells[x+1][y-1];
-		if (bottomLeft.getValue() == 0 && bottomLeft.isMine() == false) {
-			bottomLeft.uncover();
-			uncoverAroundCell((x+1),(y-1));
-		}
-		else if (bottomLeft.getValue() > 0 && bottomLeft.isMine() == false) {
-			bottomLeft.uncover();
-		}
-    }
-    else if (x == 16 && y != 0 || y != 16) {
-    Cell top = cells[x-1][y];
-     	if (top.getValue() == 0 && top.isMine() == false) {
-     		top.uncover();
-     		uncoverAroundCell((x-1),(y));
-     	}
-     	else if (top.getValue() > 0 && top.isMine() == false) {
- 			top.uncover();
-     	}
- 	Cell topLeft = cells[x-1][y-1];
- 		if (topLeft.getValue() == 0 && topLeft.isMine() == false) {
- 			topLeft.uncover();
- 			uncoverAroundCell((x-1),(y-1));
- 		}
- 		else if (topLeft.getValue() > 0 && topLeft.isMine() == false) {
- 			topLeft.uncover();
- 		}
- 	Cell topRight = cells[x-1][y+1];
- 		if (topRight.getValue() == 0 && topRight.isMine() == false) {
- 			topRight.uncover();
- 			uncoverAroundCell((x-1),(y+1));
- 		}
- 		else if (topRight.getValue() > 0 && topRight.isMine() == false) {
- 			topRight.uncover();
- 		}
- 	Cell right = cells[x][y+1];
-		if (right.getValue() == 0 && right.isMine() == false) {
-			right.uncover();
-			uncoverAroundCell((x),(y+1));
-		}
-		else if (right.getValue() > 0 && right.isMine() == false) {
-			right.uncover();
-		}
-	Cell left = cells[x][y-1];
-		if (left.getValue() == 0 && left.isMine() == false) {
-			left.uncover();
-			uncoverAroundCell((x),(y-1));
-		}
-		else if (left.getValue() > 0 && left.isMine() == false) {
-			left.uncover();
-		}
-    }
-    else if (x == 0 && y == 0) {
-    Cell left = cells[x][y-1];
-		if (left.getValue() == 0 && left.isMine() == false) {
-			left.uncover();
-			uncoverAroundCell((x),(y-1));
-		}
-		else if (left.getValue() > 0 && left.isMine() == false) {
-			left.uncover();
-		}
-	Cell bottom = cells[x+1][y];
-		if (bottom.getValue() == 0 && bottom.isMine() == false) {
-			bottom.uncover();
-			uncoverAroundCell((x+1),(y));
-		}
-		else if (bottom.getValue() > 0 && bottom.isMine() == false) {
-			bottom.uncover();
-		}
-	Cell bottomLeft = cells[x+1][y-1];
-		if (bottomLeft.getValue() == 0 && bottomLeft.isMine() == false) {
-			bottomLeft.uncover();
-			uncoverAroundCell((x+1),(y-1));
-		}
-		else if (bottomLeft.getValue() > 0 && bottomLeft.isMine() == false) {
-			bottomLeft.uncover();
-		}
-    }
-    else if (x == 16 && y == 16) {
-   	Cell topLeft = cells[x-1][y-1];
-		if (topLeft.getValue() == 0 && topLeft.isMine() == false) {
-			topLeft.uncover();
-			uncoverAroundCell((x-1),(y-1));
-		}
-		else if (topLeft.getValue() > 0 && topLeft.isMine() == false) {
-			topLeft.uncover();
-		}
-	Cell left = cells[x][y-1];
-		if (left.getValue() == 0 && left.isMine() == false) {
-			left.uncover();
-			uncoverAroundCell((x),(y-1));
-		}
-		else if (left.getValue() > 0 && left.isMine() == false) {
-			left.uncover();
-		}
-	Cell top = cells[x-1][y];
-	   	if (top.getValue() == 0 && top.isMine() == false) {
-	   		top.uncover();
-	   		uncoverAroundCell((x-1),(y));
-	   	}
-    	else if (top.getValue() > 0 && top.isMine() == false) {
-    		top.uncover();
-	    }
-    }
-    else if (x == 0 && y == 16) {
-    Cell top = cells[x-1][y];
-     	if (top.getValue() == 0 && top.isMine() == false) {
-      		top.uncover();
-      		uncoverAroundCell((x-1),(y));
-      	}
-      	else if (top.getValue() > 0 && top.isMine() == false) {
-  			top.uncover();
-      	}
-     Cell topLeft = cells[x-1][y-1];
- 		if (topLeft.getValue() == 0 && topLeft.isMine() == false) {
- 			topLeft.uncover();
- 			uncoverAroundCell((x-1),(y-1));
- 		}
- 		else if (topLeft.getValue() > 0 && topLeft.isMine() == false) {
- 			topLeft.uncover();
- 		}
- 	Cell left = cells[x][y-1];
- 		if (left.getValue() == 0 && left.isMine() == false) {
- 			left.uncover();
- 			uncoverAroundCell((x),(y-1));
- 		}
- 		else if (left.getValue() > 0 && left.isMine() == false) {
- 			left.uncover();
- 		}
-    }
-    else if (x == 16 && y == 0) {
-   	Cell top = cells[x-1][y];
-    	if (top.getValue() == 0 && top.isMine() == false) {
-    		top.uncover();
-    		uncoverAroundCell((x-1),(y));
-    	}
-    	else if (top.getValue() > 0 && top.isMine() == false) {
-			top.uncover();
-    	}
-    Cell topRight = cells[x-1][y+1];
-		if (topRight.getValue() == 0 && topRight.isMine() == false) {
-			topRight.uncover();
-			uncoverAroundCell((x-1),(y+1));
-		}
-		else if (topRight.getValue() > 0 && topRight.isMine() == false) {
-			topRight.uncover();
-		}
-	Cell right = cells[x][y+1];
-		if (right.getValue() == 0 && right.isMine() == false) {
-			right.uncover();
-			uncoverAroundCell((x),(y+1));
-		}
-		else if (right.getValue() > 0 && right.isMine() == false) {
-			right.uncover();
-		}
-    }
-    //
-    else {
-    Cell top = cells[x-1][y];
-     	if (top.getValue() == 0 && top.isMine() == false) {
-     		top.uncover();
-     		uncoverAroundCell((x-1),(y));
-     	}
-     	else if (top.getValue() > 0 && top.isMine() == false) {
- 			top.uncover();
-     	}
- 	Cell topLeft = cells[x-1][y-1];
- 		if (topLeft.getValue() == 0 && topLeft.isMine() == false) {
- 			topLeft.uncover();
- 			uncoverAroundCell((x-1),(y-1));
- 		}
- 		else if (topLeft.getValue() > 0 && topLeft.isMine() == false) {
- 			topLeft.uncover();
- 		}
- 	Cell topRight = cells[x-1][y+1];
- 		if (topRight.getValue() == 0 && topRight.isMine() == false) {
- 			topRight.uncover();
- 			uncoverAroundCell((x-1),(y+1));
- 		}
- 		else if (topRight.getValue() > 0 && topRight.isMine() == false) {
- 			topRight.uncover();
- 		}
- 	Cell right = cells[x][y+1];
- 		if (right.getValue() == 0 && right.isMine() == false) {
- 			right.uncover();
- 			uncoverAroundCell((x),(y+1));
- 		}
- 		else if (right.getValue() > 0 && right.isMine() == false) {
- 			right.uncover();
- 		}
- 	Cell left = cells[x][y-1];
- 		if (left.getValue() == 0 && left.isMine() == false) {
- 			left.uncover();
- 			uncoverAroundCell((x),(y-1));
- 		}
- 		else if (left.getValue() > 0 && left.isMine() == false) {
- 			left.uncover();
- 		}
- 	Cell bottom = cells[x+1][y];
- 		if (bottom.getValue() == 0 && bottom.isMine() == false) {
- 			bottom.uncover();
- 			uncoverAroundCell((x+1),(y));
- 		}
- 		else if (bottom.getValue() > 0 && bottom.isMine() == false) {
- 			bottom.uncover();
- 		}
- 	Cell bottomRight = cells[x+1][y+1];
- 		if (bottomRight.getValue() == 0 && bottomRight.isMine() == false) {
- 			bottomRight.uncover();
- 			uncoverAroundCell((x+1),(y+1));
- 		}
- 		else if (bottomRight.getValue() > 0 && bottomRight.isMine() == false) {
- 			bottomRight.uncover();
- 		}
- 	Cell bottomLeft = cells[x+1][y-1];
- 		if (bottomLeft.getValue() == 0 && bottomLeft.isMine() == false) {
- 			bottomLeft.uncover();
- 			uncoverAroundCell((x+1),(y-1));
- 		}
- 		else if (bottomLeft.getValue() > 0 && bottomLeft.isMine() == false) {
- 			bottomLeft.uncover();
- 		}	
-    }
-   
+    	
 //    	Gameplan:
 //    		- Method initially checks the value of the 8 cells around the current cell 
 //    				- If the cell has a value of 0, uncover the cell and recursively call uncoverAroundCell on that cell
 //    				- If the cell has a value greater than 0, uncover the cell 
 //					- If the cell has a mine, keep it covered
-    			*/
+    	
     }
 
     private boolean checkEmpty(Cell cell) {
