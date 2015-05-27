@@ -82,7 +82,6 @@ public class Board extends JPanel {
     }
 
     
-
     private void setMineCounts() {
 
         for (int i = 0; i < this.columns; ++i) {
@@ -240,7 +239,9 @@ public class Board extends JPanel {
      */
     private void uncoverAroundCell(int x, int y) {
     	/* YOUR CODE GOES HERE! */
-    if (y == 0 && x != 0 || x != 16) {
+    
+    	/*
+    	if (y == 0 && x != 0 || x != 16) {
     Cell top = cells[x-1][y];
      	if (top.getValue() == 0 && top.isMine() == false) {
      		top.uncover();
@@ -585,7 +586,7 @@ public class Board extends JPanel {
 //    				- If the cell has a value of 0, uncover the cell and recursively call uncoverAroundCell on that cell
 //    				- If the cell has a value greater than 0, uncover the cell 
 //					- If the cell has a mine, keep it covered
-    	
+    			*/
     }
 
     private boolean checkEmpty(Cell cell) {
