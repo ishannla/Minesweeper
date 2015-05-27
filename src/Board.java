@@ -105,7 +105,7 @@ public class Board extends JPanel {
      * You should explore nearby cells and return an accurate count of
      * nearby mines.
      */
-    private int countMinesAround(int x, int y) {
+    private int countMinesAround(int x, int y) {//Dorothy's method
         int count = 0;
         
         /* YOUR CODE GOES HERE! */ 
