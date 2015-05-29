@@ -421,7 +421,12 @@ public class Board extends JPanel {
      * This method is used to uncover nearby non-empty cells.
      */
     private void uncoverAroundCell(int x, int y) { 
-    			   
+    	
+//    	Gameplan:
+//		- Method initially checks the value of the 8 cells around the current cell 
+//		- Uncover the cells around the x, y coordinate
+//		- Account for corners and border cells that don't check all 8
+    	
     		if (x == 0 && y == 0) { // top left corner
     	    	Cell right = cells[x][y+1];
     			Cell bot = cells[x+1][y];
@@ -510,7 +515,7 @@ public class Board extends JPanel {
     			bot.uncover();
     			bottomLeft.uncover();
     	        }
-    	     else {
+    	     else { // center cells
     	    	Cell top = cells[x-1][y];
     	    	Cell topLeft = cells[x-1][y-1];
     	   		Cell topRight = cells[x-1][y+1];
@@ -530,13 +535,7 @@ public class Board extends JPanel {
         		bottomLeft.uncover();   
     	    	}
     	    } 
-
-//    	Gameplan:
-//    		- Method initially checks the value of the 8 cells around the current cell 
-//    				- If the cell has a value of 0, uncover the cell and recursively call uncoverAroundCell on that cell
-//    				- If the cell has a value greater than 0, uncover the cell 
-//					- If the cell has a mine, keep it covered */
-
+    
     private boolean checkEmpty(Cell cell) {
         if (!cell.isChecked()) {
             if (cell.isEmpty()) {
