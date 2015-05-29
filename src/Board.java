@@ -421,12 +421,35 @@ public class Board extends JPanel {
      * This method is used to uncover nearby non-empty cells.
      */
     private void uncoverAroundCell(int x, int y) { 
-    	
-     	Cell first = cells[x][y];
+    		
+    		if (x > 0 && x < 15 && y > 0 && y < 15) {
+    			Cell top = cells[x-1][y];
+  	 		Cell topLeft = cells[x-1][y-1];
+  	 		Cell topRight = cells[x-1][y+1];
+  	 		Cell right = cells[x][y+1];
+  	 		Cell left = cells[x][y-1];
+  	 		Cell bot = cells[x+1][y];
+  	 		Cell bottomRight = cells[x+1][y+1];
+  	 		Cell bottomLeft = cells[x+1][y-1];
+  	 		
+  	 		top.uncover();
+  	 		topLeft.uncover();
+  	 		topRight.uncover();
+  	 		right.uncover();
+  	 		left.uncover();
+  	 		bot.uncover();
+  	 		bottomRight.uncover();
+  	 		bottomLeft.uncover();   
+    		}
+    			   
+    		
+    		
+       
+     	
      	//JOptionPane.showMessageDialog(null,"Coordinate = " + x + ", " + y + " Val = " + first.getValue(),"TITLE",JOptionPane.WARNING_MESSAGE);
      	
      	//Cell one = cells[x + 1][y];
-     	JOptionPane.showMessageDialog(null,"Clicked on = " + x + ", " + y + " Val = " + first.getValue(),"TITLE",JOptionPane.WARNING_MESSAGE);
+     	//JOptionPane.showMessageDialog(null,"Clicked on = " + x + ", " + y + " Val = " + first.getValue(),"TITLE",JOptionPane.WARNING_MESSAGE);
      	//JOptionPane.showMessageDialog(null,"Right Coordinate = " + (x + 1) + ", " + y + " Val = " + first.getValue(),"TITLE",JOptionPane.WARNING_MESSAGE);
      ///	if (one.getValue() > 0)
      	//	JOptionPane.showMessageDialog(null, "Uncover", "TITLE",JOptionPane.WARNING_MESSAGE);
