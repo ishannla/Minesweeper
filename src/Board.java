@@ -16,7 +16,6 @@ public class Board extends JPanel {
 	
     private final int CELL_SIZE  = 15;
     private final int NUM_IMAGES = 13;
-
     private final int IMAGE_MINE       = 9;
     private final int IMAGE_COVER      = 10;
     private final int IMAGE_MARK       = 11;
@@ -84,8 +83,6 @@ public class Board extends JPanel {
         }
     }
 
-    
-
     private void setMineCounts() {
 
         for (int i = 0; i < this.columns; ++i) {
@@ -109,6 +106,7 @@ public class Board extends JPanel {
      * You should explore nearby cells and return an accurate count of
      * nearby mines.
      */
+    
     private int countMinesAround(int x, int y) {
         int count = 0;
         
@@ -346,13 +344,13 @@ public class Board extends JPanel {
         if (inGame) {
         	
         		if (cell.isMarked())
-        			return 11;
+        			return IMAGE_MARK;
         					
         		else if (!cell.isCovered() && cell.getValue() < 1)
-        			return 0;//display pressed image
+        			return 0; //display pressed image
         	
         		else if (cell.isCovered())
-        			return 10;//display covered image
+        			return IMAGE_COVER; //display covered image
 
         		else if (!cell.isCovered() && cell.getValue() != 0)
         			return cell.getValue();//display correct value
@@ -362,15 +360,16 @@ public class Board extends JPanel {
         else if (!inGame)	{
       
         		if (cell.isMarked() && !cell.isMine())
-        			return 12; 
+        			return IMAGE_WRONG_MARK; 
         		
         		else if (cell.isMine())
-        			return 9;
+        			return IMAGE_MINE;
+        		
+        		else if (cell.isCovered())
+        			return 10;
         	
         		
         	}
-
-        /* YOUR CODE GOES HERE! */
         
 //    	Gameplan: 
 //		- There are 13 Images (0 = Pressed, 1 - 8 = Values, 9 = Mine, 10 = Covered, 11 = Marked Correctly, 12 = Marked Incorrectly )
@@ -387,7 +386,7 @@ public class Board extends JPanel {
 //        			- Display all of the mines 
 //        			- If the cell has a mine, display it no matter what 
 
-// 		lol tbh I don't understand this method 100% I will ask them more on Monday
+
         
         return imageType;
     }
@@ -436,11 +435,6 @@ public class Board extends JPanel {
      * This method is used to uncover nearby non-empty cells.
      */
     private void uncoverAroundCell(int x, int y) { 
-    	
-//    	Gameplan:
-//		- Method initially checks the value of the 8 cells around the current cell 
-//		- Uncover the cells around the x, y coordinate
-//		- Account for corners and border cells that don't check all 8
     	
     		//check for top left corner
     		if (x == 0 && y == 0) { 
@@ -547,9 +541,9 @@ public class Board extends JPanel {
     	   }
     		
     		// check for center cells
-    	  else { 
-    	    	Cell top = cells[x-1][y];
-    	    	Cell topLeft = cells[x-1][y-1];
+    	    else { 
+    	    		Cell top = cells[x-1][y];
+    	    		Cell topLeft = cells[x-1][y-1];
     	   		Cell topRight = cells[x-1][y+1];
     	   		Cell right = cells[x][y+1];
     	   		Cell left = cells[x][y-1];
@@ -566,7 +560,13 @@ public class Board extends JPanel {
     	   		bottomRight.uncover();
         		bottomLeft.uncover();   
     	    	}
-    	    } 
+    		
+//        	Gameplan:
+//    		- Method initially checks the value of the 8 cells around the current cell 
+//    		- Uncover the cells around the x, y coordinate
+//    		- Account for corners and border cells that don't check all 8
+    		
+    } 
     
     private boolean checkEmpty(Cell cell) {
         if (!cell.isChecked()) {
