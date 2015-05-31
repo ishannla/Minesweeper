@@ -24,7 +24,7 @@ public class Board extends JPanel {
 
     private JLabel statusBar;
 
-    private int totalMines = 40;
+    private int totalMines = Mines.numberOfMines;
     private int remainderMines;
 
     private int rows = 16, columns = 16;
@@ -112,6 +112,7 @@ public class Board extends JPanel {
     private int countMinesAround(int x, int y) {
         int count = 0;
         
+        //check for top left corner
         if (x == 0 && y == 0) {
         		ArrayList<Cell> cellCheck = new ArrayList<Cell>();
         		Cell right = cells[x][y+1];
@@ -128,6 +129,7 @@ public class Board extends JPanel {
         		return count;
         }
         
+        //check for top right corner
         else if (x == 0 && y == 15) {
         		ArrayList<Cell> cellCheck = new ArrayList<Cell>();
         		Cell left = cells[x][y-1];
@@ -144,6 +146,7 @@ public class Board extends JPanel {
         		return count;
         } 
         
+        //check for bottom left corner
         else if (x == 15 && y == 0) {
         		ArrayList<Cell> cellCheck = new ArrayList<Cell>();
         		Cell right = cells[x][y+1];
@@ -160,6 +163,7 @@ public class Board extends JPanel {
         		return count;
         } 
         
+        //check for bottom right corner
         else if (x == 15 && y == 15) {
         		ArrayList<Cell> cellCheck = new ArrayList<Cell>();
         		Cell left = cells[x][y-1];
@@ -176,6 +180,7 @@ public class Board extends JPanel {
         		return count;
         } 
         
+        //check for first row
         else if (x == 0) {
         		ArrayList<Cell> cellCheck = new ArrayList<Cell>();
         		Cell right = cells[x][y+1];
@@ -194,6 +199,7 @@ public class Board extends JPanel {
         		return count;
         } 
         
+        //check for last row
         else if (x == 15) {
 	        	ArrayList<Cell> cellCheck = new ArrayList<Cell>();
 	        	Cell right = cells[x][y+1];
@@ -212,6 +218,7 @@ public class Board extends JPanel {
 	        	return count;
         } 
         
+        //check for first column
         else if (y == 0) {
         		ArrayList<Cell> cellCheck = new ArrayList<Cell>();
         		Cell top = cells[x-1][y];
@@ -230,6 +237,7 @@ public class Board extends JPanel {
         	return count;
         }
         
+        //check for last column
         else if (y == 15) {
         		ArrayList<Cell> cellCheck = new ArrayList<Cell>();
         		Cell top = cells[x-1][y];
@@ -248,6 +256,7 @@ public class Board extends JPanel {
         	return count;
         }
         
+        //check for center cells
         else {
         		ArrayList<Cell> cellCheck = new ArrayList<Cell>();
         		Cell top = cells[x-1][y];
@@ -334,9 +343,12 @@ public class Board extends JPanel {
     private int decideImageType(Cell cell) {
         int imageType = cell.getValue();
         
-        if (inGame)	{
+        if (inGame) {
         	
-        		if (!cell.isCovered() && cell.getValue() < 1)
+        		if (cell.isMarked())
+        			return 11;
+        					
+        		else if (!cell.isCovered() && cell.getValue() < 1)
         			return 0;//display pressed image
         	
         		else if (cell.isCovered())
@@ -349,10 +361,13 @@ public class Board extends JPanel {
         
         else if (!inGame)	{
       
-        		if (cell.isMine())
+        		if (cell.isMarked() && !cell.isMine())
+        			return 12; 
+        		
+        		else if (cell.isMine())
         			return 9;
         	
-        		cell.uncover(); 
+        		
         	}
 
         /* YOUR CODE GOES HERE! */
@@ -427,8 +442,9 @@ public class Board extends JPanel {
 //		- Uncover the cells around the x, y coordinate
 //		- Account for corners and border cells that don't check all 8
     	
-    		if (x == 0 && y == 0) { // top left corner
-    	    	Cell right = cells[x][y+1];
+    		//check for top left corner
+    		if (x == 0 && y == 0) { 
+    			Cell right = cells[x][y+1];
     			Cell bot = cells[x+1][y];
     			Cell bottomRight = cells[x+1][y+1];
     			
@@ -436,35 +452,43 @@ public class Board extends JPanel {
     			bot.uncover();
     			bottomRight.uncover();
     	    }
-    	    else if (x == 15 && y == 0) { // bottom left corner
+    		
+    		// check for bottom left corner
+    	    else if (x == 15 && y == 0) { 
     	  	    Cell top = cells[x-1][y];
-    	    	Cell topRight = cells[x-1][y+1];
+    	  	    Cell topRight = cells[x-1][y+1];
     			Cell right = cells[x][y+1];
     			
     			top.uncover();
     			topRight.uncover();
     			right.uncover();
-       	   	    }
-    	   	else if (x == 0 && y == 15) { // top left corner
-    	    	Cell left = cells[x-1][y];
-    	     	Cell botLeft = cells[x-1][y-1];
+        }
+    		
+    		// check for top right corner
+    	   	else if (x == 0 && y == 15) { 
+    	   		Cell left = cells[x][y - 1];
+    	     	Cell botLeft = cells[x+1][y-1];
     	 		Cell bot = cells[x][y-1];
     	 		
     	 		left.uncover();
     	 		botLeft.uncover();
     	 		bot.uncover();
-    	        }
-    	   	    else if (x == 15 && y == 15) { // bot right corner
-    	   	    Cell topLeft = cells[x-1][y-1];
-     			Cell left = cells[x][y-1];
+    	    }
+    		
+    		// check for bottom right corner
+    	   else if (x == 15 && y == 15) { 
+    	   		Cell topLeft = cells[x-1][y-1];
+     		Cell left = cells[x][y-1];
     			Cell top = cells[x-1][y];
     			
     			topLeft.uncover();
     			left.uncover();
     			top.uncover();
-    	   	    }
-    	   	    else if (x == 0) { // top row
-    	   	    Cell right = cells[x][y+1];
+    	      }
+    		
+    		// check for top row
+    	    else if (x == 0) { 
+    	   	    	Cell right = cells[x][y+1];
     			Cell left = cells[x][y-1];
     			Cell bot = cells[x+1][y];
     			Cell bottomRight = cells[x+1][y+1];
@@ -476,7 +500,9 @@ public class Board extends JPanel {
     			bottomRight.uncover();
     			bottomLeft.uncover();
     	    	}
-    	        else if (x == 15) { // bottom row
+    		
+    		// check for bottom row
+    	    else if (x == 15) { 
     	   	    Cell top = cells[x-1][y];
     	 		Cell topLeft = cells[x-1][y-1];
     	 		Cell topRight = cells[x-1][y+1];
@@ -488,12 +514,14 @@ public class Board extends JPanel {
     			topRight.uncover();
     			right.uncover();
     			left.uncover();
-    	   	    }
-    	   	    else if (y == 0) { // left column
-    	    	Cell top = cells[x-1][y];
+    	    }
+    	   	   
+    		// check for left column
+    	    else if (y == 0) { 
+    	    		Cell top = cells[x-1][y];
     	   		Cell topRight = cells[x-1][y+1];
     	 		Cell right = cells[x][y+1];
-    	    	Cell bot = cells[x+1][y];
+    	 		Cell bot = cells[x+1][y];
     			Cell bottomRight = cells[x+1][y+1];
     			
     			top.uncover();
@@ -501,8 +529,10 @@ public class Board extends JPanel {
     			right.uncover();
     			bot.uncover();
     			bottomRight.uncover();
-    	   	    }
-    	   	    else if (y == 15) {
+    	    }
+    		
+    		// check for right column
+    	    else if (y == 15) {
     	   	 	Cell top = cells[x-1][y];
     	 		Cell topLeft = cells[x-1][y-1];
     	 		Cell left = cells[x][y-1];
@@ -514,8 +544,10 @@ public class Board extends JPanel {
     			left.uncover();
     			bot.uncover();
     			bottomLeft.uncover();
-    	        }
-    	     else { // center cells
+    	   }
+    		
+    		// check for center cells
+    	  else { 
     	    	Cell top = cells[x-1][y];
     	    	Cell topLeft = cells[x-1][y-1];
     	   		Cell topRight = cells[x-1][y+1];
